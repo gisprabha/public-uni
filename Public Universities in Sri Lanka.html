@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_1813258afd329924d53a907290fa6b96 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.css"/>
+    <script src="https://cdn.jsdelivr.net/gh/ardhi/Leaflet.MousePosition/src/L.Control.MousePosition.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ardhi/Leaflet.MousePosition/src/L.Control.MousePosition.min.css"/>
+    <script src="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.css"/>
+</head>
+<body>
+    
+    
+    <div style="position: relative; background-color: darkblue; color: white; padding: 2px;">
+        <h3 align="center" style="margin-top:0;"><b>Public Universities in Sri Lanka</b></h3>
+        <h6 align="center" style="margin-top:1;"><i>There are currently seventeen universities in Sri Lanka, 
+        which are established under the authority of the University Grants Commission. All the following universities are 
+        recognised bodies with university status (University charter) under Universities Act No.16 of 1978.The UGC is subordinate to the Ministry of Higher Education.</i></h6>
+        <p style="position: absolute; top: 10px; right: 10px; font-size: 10px; color: white;">By Prabhashini Manawardhana</p>
+        <div style="background-color: #ADD8E6; height: 3px; margin-top: 10px;"></div>
+    </div>
+    
+    <div style="position: fixed; bottom: 50px; left: 50px; z-index: 1000; background-color: white; padding: 5px;">
+        <h4>Legend</h4>
+        <i class="fa fa-university fa-lg" style="color: blue;"></i> Public University
+    </div>
+    
+    <div style="position: absolute; top: 150px; right: 10px; z-index: 1000;">
+        <a href="https://www.facebook.com" target="_blank">
+            <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
+        </a>
+    </div>
+    
+    <div style="position: absolute; top: 150px; right: 50px; z-index: 1000;">
+        <a href="https://www.linkedin.com" target="_blank">
+            <i class="fab fa-linkedin-in fa-lg" style="color: #0e76a8;"></i>
+        </a>
+    </div>
+    
+    <div style="position: absolute; top: 150px; right: 10px; z-index: 1000;">
+        <a href="https://www.facebook.com" target="_blank">
+            <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
+        </a>
+    </div>
+    
+    <div style="position: absolute; top: 150px; right: 50px; z-index: 1000;">
+        <a href="https://www.linkedin.com" target="_blank">
+            <i class="fab fa-linkedin-in fa-lg" style="color: #0e76a8;"></i>
+        </a>
+    </div>
+    
+            <div class="folium-map" id="map_1813258afd329924d53a907290fa6b96" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_1813258afd329924d53a907290fa6b96 = L.map(
+                "map_1813258afd329924d53a907290fa6b96",
+                {
+                    center: [7.6025111, 80.7462083],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 7,
+                    zoomControl: true,
+                    preferCanvas: false,
+                    fullscreenControl: true,
+                }
+            );
+            L.control.scale().addTo(map_1813258afd329924d53a907290fa6b96);
+
+            
+
+        
+    
+            var tile_layer_e0e12b523aee197f96003cff4119e376 = L.tileLayer(
+                "https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg",
+                {"attribution": "Map tiles by \u003ca target=\"_blank\" href=\"http://stamen.com\"\u003eStamen Design\u003c/a\u003e, under \u003ca target=\"_blank\" href=\"http://creativecommons.org/licenses/by/3.0\"\u003eCC BY 3.0\u003c/a\u003e. Data by \u0026copy; \u003ca target=\"_blank\" href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca target=\"_blank\" href=\"http://creativecommons.org/licenses/by-sa/3.0\"\u003eCC BY SA\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_1813258afd329924d53a907290fa6b96);
+        
+    
+            var marker_12512afc22f47b44bd85a13e2ebbcf74 = L.marker(
+                [7.09035190000003, 80.03663360000007],
+                {}
+            ).addTo(map_1813258afd329924d53a907290fa6b96);
+        
+    
+            var icon_3ee48d42d1ed8e6e100c9945adcc0d40 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "university", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_12512afc22f47b44bd85a13e2ebbcf74.setIcon(icon_3ee48d42d1ed8e6e100c9945adcc0d40);
+        
+    
+        var popup_2b68019d571fce717a93436d5f21c4a5 = L.popup({"maxWidth": 250});
+
+        
+            
+                var html_11d67d297980c9f8ae56c8b3a0f30fd2 = $(`<div id="html_11d67d297980c9f8ae56c8b3a0f30fd2" style="width: 100.0%; height: 100.0%;"><b>Gampaha Wickramarachchi University of Indigenous Medicine</b><br>Kandy Rd, Yakkala</div>`)[0];
+                popup_2b68019d571fce717a93436d5f21c4a5.setContent(html_11d67d297980c9f8ae56c8b3a0f30fd2);
+            
+        
+
+        marker_12512afc22f47b44bd85a13e2ebbcf74.bindPopup(popup_2b68019d571fce717a93436d5f21c4a5)
+        ;
+
+        
+    
+    
+            var marker_4bc95bd86642dc36dea65e7b47bb201b = L.marker(
+                [6.909960300000023, 79.86249870000006],
+                {}
+            ).addTo(map_1813258afd329924d53a907290fa6b96);
+        
+    
+            var icon_77f0ecfcb0df651bd8b746e855f70bee = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "university", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_4bc95bd86642dc36dea65e7b47bb201b.setIcon(icon_77f0ecfcb0df651bd8b746e855f70bee);
+        
+    
+        var popup_16c9d33b8e3fc924be745342705ff264 = L.popup({"maxWidth": 250});
+
+        
+            
+                var html_d50fc07c0128204df7a25ddf9bb6e636 = $(`<div id="html_d50fc07c0128204df7a25ddf9bb6e636" style="width: 100.0%; height: 100.0%;"><b>University of Visual and Performing Arts</b><br>21 Albert Cres, Colombo 00700</div>`)[0];
+                popup_16c9d33b8e3fc924be745342705ff264.setContent(html_d50fc07c0128204df7a25ddf9bb6e636);
+            
+        
+
+        marker_4bc95bd86642dc36dea65e7b47bb201b.bindPopup(popup_16c9d33b8e3fc924be745342705ff264)
+        ;
+
+        
+    
+    
+            var marker_d251ea4d929355c12e8b72b14269d6e1 = L.marker(
+                [6.981895200000054, 81.076283],
+                {}
+            ).addTo(map_1813258afd329924d53a907290fa6b96);
+        
+    
+            var icon_6b0a20a506b164b2188a0401fafcb60c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "university", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_d251ea4d929355c12e8b72b14269d6e1.setIcon(icon_6b0a20a506b164b2188a0401fafcb60c);
+        
+    
+        var popup_58f6d02fa9e64adf49949865669b30fd = L.popup({"maxWidth": 250});
+
+        
+            
+                var html_3035ca11c745b21fe6a11c0ae0394731 = $(`<div id="html_3035ca11c745b21fe6a11c0ae0394731" style="width: 100.0%; height: 100.0%;"><b>Uva Wellassa University of Sri Lanka</b><br>X3JG+QG3, Badulla</div>`)[0];
+                popup_58f6d02fa9e64adf49949865669b30fd.setContent(html_3035ca11c745b21fe6a11c0ae0394731);
+            
+        
+
+        marker_d251ea4d929355c12e8b72b14269d6e1.bindPopup(popup_58f6d02fa9e64adf49949865669b30fd)
+        ;
+
+        
+    
+    
+            var marker_33c39820f16b8a21d4b06fa2b94d2e9d = L.marker(
+                [7.322598400000061, 79.98821630000003],
+                {}
+            ).addTo(map_1813258afd329924d53a907290fa6b96);
+        
+    
+            var icon_568a28bff15d643e19f0af22b5a41ce6 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "university", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_33c39820f16b8a21d4b06fa2b94d2e9d.setIcon(icon_568a28bff15d643e19f0af22b5a41ce6);
+        
+    
+        var popup_3751266e0e3be66d731b31bad2af9828 = L.popup({"maxWidth": 250});
+
+        
+            
+                var html_4c4380b68dbebdcfb2f926ca0140adaa = $(`<div id="html_4c4380b68dbebdcfb2f926ca0140adaa" style="width: 100.0%; height: 100.0%;"><b>Wayamba University of Sri Lanka Makandura Premises</b><br>B308 Negombo-Kurunegala Rd, 60170</div>`)[0];
+                popup_3751266e0e3be66d731b31bad2af9828.setContent(html_4c4380b68dbebdcfb2f926ca0140adaa);
+            
+        
+
+        marker_33c39820f16b8a21d4b06fa2b94d2e9d.bindPopup(popup_3751266e0e3be66d731b31bad2af9828)
+        ;
+
+        
+    
+    
+            var marker_8be2f201c6dfbf5042d9031424808163 = L.marker(
+                [6.714591200000029, 80.78721850000005],
+                {}
+            ).addTo(map_1813258afd329924d53a907290fa6b96);
+        
+    
+            var icon_41a48c2f7c8d72c3affc359bb5dfe50d = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "university", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_8be2f201c6dfbf5042d9031424808163.setIcon(icon_41a48c2f7c8d72c3affc359bb5dfe50d);
+        
+    
+        var popup_c4b8651bf6177c54e16124c1f1285c57 = L.popup({"maxWidth": 250});
+
+        
+            
+                var html_593e4ee80584ca947f7de9df90c780ae = $(`<div id="html_593e4ee80584ca947f7de9df90c780ae" style="width: 100.0%; height: 100.0%;"><b>Sabaragamuwa University of Sri Lanka</b><br>Sabaragamuwa University of Sri Lanka, Belihuloya 70140</div>`)[0];
+                popup_c4b8651bf6177c54e16124c1f1285c57.setContent(html_593e4ee80584ca947f7de9df90c780ae);
+            
+        
+
+        marker_8be2f201c6dfbf5042d9031424808163.bindPopup(popup_c4b8651bf6177c54e16124c1f1285c57)
+        ;
+
+        
+    
+    
+            var marker_e116187233c43c7711e88ed01778e63e = L.marker(
+                [8.360803400000066, 80.50333690000008],
+                {}
+            ).addTo(map_1813258afd329924d53a907290fa6b96);
+        
+    
+            var icon_55a12321ec859ddfa8774e86763dd37b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "university", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_e116187233c43c7711e88ed01778e63e.setIcon(icon_55a12321ec859ddfa8774e86763dd37b);
+        
+    
+        var popup_e51eab9b8d7f02e7a36112ca965f47b6 = L.popup({"maxWidth": 250});
+
+        
+            
+                var html_cb6530e4bc3590b07761d0a1619d3170 = $(`<div id="html_cb6530e4bc3590b07761d0a1619d3170" style="width: 100.0%; height: 100.0%;"><b>Rajarata University of Sri Lanka</b><br>Mihintale 50300</div>`)[0];
+                popup_e51eab9b8d7f02e7a36112ca965f47b6.setContent(html_cb6530e4bc3590b07761d0a1619d3170);
+            
+        
+
+        marker_e116187233c43c7711e88ed01778e63e.bindPopup(popup_e51eab9b8d7f02e7a36112ca965f47b6)
+        ;
+
+        
+    
+    
+            var marker_ff591f5568939dfd7cfdc2d1732c62eb = L.marker(
+                [7.296967800000061, 81.85003280000006],
+                {}
+            ).addTo(map_1813258afd329924d53a907290fa6b96);
+        
+    
+            var icon_7da86d123e14e67223d7deb9002335c6 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "university", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_ff591f5568939dfd7cfdc2d1732c62eb.setIcon(icon_7da86d123e14e67223d7deb9002335c6);
+        
+    
+        var popup_e12a6aad8d736aadf79d317aa41504d8 = L.popup({"maxWidth": 250});
+
+        
+            
+                var html_7adab3df6ba327ea4287293f76a691dd = $(`<div id="html_7adab3df6ba327ea4287293f76a691dd" style="width: 100.0%; height: 100.0%;"><b>South Eastern University</b><br>7VW2+Q2M, Oluvil</div>`)[0];
+                popup_e12a6aad8d736aadf79d317aa41504d8.setContent(html_7adab3df6ba327ea4287293f76a691dd);
+            
+        
+
+        marker_ff591f5568939dfd7cfdc2d1732c62eb.bindPopup(popup_e12a6aad8d736aadf79d317aa41504d8)
+        ;
+
+        
+    
+    
+            var marker_147e89ebe3252824ea3e8e891a886647 = L.marker(
+                [7.79443660000004, 81.57901710000004],
+                {}
+            ).addTo(map_1813258afd329924d53a907290fa6b96);
+        
+    
+            var icon_a7600faa588858563e8fc54bf089644b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "university", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_147e89ebe3252824ea3e8e891a886647.setIcon(icon_a7600faa588858563e8fc54bf089644b);
+        
+    
+        var popup_82f70a6caf7b5e0bc3cd2217642ef178 = L.popup({"maxWidth": 250});
+
+        
+            
+                var html_141999131657b92735407ca90c1067ef = $(`<div id="html_141999131657b92735407ca90c1067ef" style="width: 100.0%; height: 100.0%;"><b>Eastern University, Sri Lanka</b><br>QHVH+QJC, Trincomalee Hwy, Chenkaladi</div>`)[0];
+                popup_82f70a6caf7b5e0bc3cd2217642ef178.setContent(html_141999131657b92735407ca90c1067ef);
+            
+        
+
+        marker_147e89ebe3252824ea3e8e891a886647.bindPopup(popup_82f70a6caf7b5e0bc3cd2217642ef178)
+        ;
+
+        
+    
+    
+            var marker_7326b7aca84ab8b049c40eb89131ec88 = L.marker(
+                [6.884394400000076, 79.88391590000003],
+                {}
+            ).addTo(map_1813258afd329924d53a907290fa6b96);
+        
+    
+            var icon_06c71cf4fb22469970f6f50643a1090c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "university", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_7326b7aca84ab8b049c40eb89131ec88.setIcon(icon_06c71cf4fb22469970f6f50643a1090c);
+        
+    
+        var popup_530c7681051cd4809902b020ffa80cc9 = L.popup({"maxWidth": 250});
+
+        
+            
+                var html_67c4b6ce6381e020dd2a85616a96e0ac = $(`<div id="html_67c4b6ce6381e020dd2a85616a96e0ac" style="width: 100.0%; height: 100.0%;"><b>The Open University of Sri Lanka</b><br>Nawala, Nugegoda 11222</div>`)[0];
+                popup_530c7681051cd4809902b020ffa80cc9.setContent(html_67c4b6ce6381e020dd2a85616a96e0ac);
+            
+        
+
+        marker_7326b7aca84ab8b049c40eb89131ec88.bindPopup(popup_530c7681051cd4809902b020ffa80cc9)
+        ;
+
+        
+    
+    
+            var marker_a788223fe658cd77f8967b86a821c142 = L.marker(
+                [8.75853150000006, 80.49514680000004],
+                {}
+            ).addTo(map_1813258afd329924d53a907290fa6b96);
+        
+    
+            var icon_74488a514ab80cef6a799b247dbfd086 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "university", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_a788223fe658cd77f8967b86a821c142.setIcon(icon_74488a514ab80cef6a799b247dbfd086);
+        
+    
+        var popup_c20a60ad17bd05d66e531fc939ae0782 = L.popup({"maxWidth": 250});
+
+        
+            
+                var html_ab910f5df04d65a91c7c6f0f8702ffe3 = $(`<div id="html_ab910f5df04d65a91c7c6f0f8702ffe3" style="width: 100.0%; height: 100.0%;"><b>University of Vavuniya - Admin Office</b><br>QF5W+C36, Park Rd, Vavuniya</div>`)[0];
+                popup_c20a60ad17bd05d66e531fc939ae0782.setContent(html_ab910f5df04d65a91c7c6f0f8702ffe3);
+            
+        
+
+        marker_a788223fe658cd77f8967b86a821c142.bindPopup(popup_c20a60ad17bd05d66e531fc939ae0782)
+        ;
+
+        
+    
+    
+            var marker_fa761ac1f0796c8c7946eb8774720de5 = L.marker(
+                [9.683893700000056, 80.02305670000004],
+                {}
+            ).addTo(map_1813258afd329924d53a907290fa6b96);
+        
+    
+            var icon_40ddd75bf95a06bc79ae6c9b438ed267 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "university", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_fa761ac1f0796c8c7946eb8774720de5.setIcon(icon_40ddd75bf95a06bc79ae6c9b438ed267);
+        
+    
+        var popup_895ab5ed911272f83b8bb7da489fab5f = L.popup({"maxWidth": 250});
+
+        
+            
+                var html_3eea58ce29100681ff4b058850787212 = $(`<div id="html_3eea58ce29100681ff4b058850787212" style="width: 100.0%; height: 100.0%;"><b>University of Jaffna</b><br>M2MF+H63, Ramanathan Rd, Jaffna</div>`)[0];
+                popup_895ab5ed911272f83b8bb7da489fab5f.setContent(html_3eea58ce29100681ff4b058850787212);
+            
+        
+
+        marker_fa761ac1f0796c8c7946eb8774720de5.bindPopup(popup_895ab5ed911272f83b8bb7da489fab5f)
+        ;
+
+        
+    
+    
+            var marker_2f8ada65f9637873b50401e294c2d0a7 = L.marker(
+                [6.795127600000058, 79.900867],
+                {}
+            ).addTo(map_1813258afd329924d53a907290fa6b96);
+        
+    
+            var icon_85b33f0f9db4734423c91bde5f8a5edd = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "university", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_2f8ada65f9637873b50401e294c2d0a7.setIcon(icon_85b33f0f9db4734423c91bde5f8a5edd);
+        
+    
+        var popup_36341ddd2195f00cfaec843a59af2610 = L.popup({"maxWidth": 250});
+
+        
+            
+                var html_9182e522e2f87ec08fdd1c5329e381b0 = $(`<div id="html_9182e522e2f87ec08fdd1c5329e381b0" style="width: 100.0%; height: 100.0%;"><b>University of Moratuwa</b><br>Bandaranayake Mawatha, Moratuwa 10400</div>`)[0];
+                popup_36341ddd2195f00cfaec843a59af2610.setContent(html_9182e522e2f87ec08fdd1c5329e381b0);
+            
+        
+
+        marker_2f8ada65f9637873b50401e294c2d0a7.bindPopup(popup_36341ddd2195f00cfaec843a59af2610)
+        ;
+
+        
+    
+    
+            var marker_64cbe9c72e283358e3399238d4e10cd3 = L.marker(
+                [6.975403200000073, 79.91555340000008],
+                {}
+            ).addTo(map_1813258afd329924d53a907290fa6b96);
+        
+    
+            var icon_3f04e1d679296520167532f016386595 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "university", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_64cbe9c72e283358e3399238d4e10cd3.setIcon(icon_3f04e1d679296520167532f016386595);
+        
+    
+        var popup_033ac0e0f7ea8087ae216ffc354f14dc = L.popup({"maxWidth": 250});
+
+        
+            
+                var html_2c7d25d1505a4591cc08a67807e0a47a = $(`<div id="html_2c7d25d1505a4591cc08a67807e0a47a" style="width: 100.0%; height: 100.0%;"><b>University of Kelaniya</b><br>Administrative Building, Kandy Rd, Kelaniya 11600</div>`)[0];
+                popup_033ac0e0f7ea8087ae216ffc354f14dc.setContent(html_2c7d25d1505a4591cc08a67807e0a47a);
+            
+        
+
+        marker_64cbe9c72e283358e3399238d4e10cd3.bindPopup(popup_033ac0e0f7ea8087ae216ffc354f14dc)
+        ;
+
+        
+    
+    
+            var marker_4d34146b21f975248d7ed33580dd3784 = L.marker(
+                [6.852767, 79.90358460000004],
+                {}
+            ).addTo(map_1813258afd329924d53a907290fa6b96);
+        
+    
+            var icon_7900c36cd6445d00c00c35405be82353 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "university", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_4d34146b21f975248d7ed33580dd3784.setIcon(icon_7900c36cd6445d00c00c35405be82353);
+        
+    
+        var popup_746e1c316e734489392f647301bde951 = L.popup({"maxWidth": 250});
+
+        
+            
+                var html_535a3854d68fb52b503ed21757ea0e69 = $(`<div id="html_535a3854d68fb52b503ed21757ea0e69" style="width: 100.0%; height: 100.0%;"><b>University of Sri Jayewardenepura</b><br>Nugegoda</div>`)[0];
+                popup_746e1c316e734489392f647301bde951.setContent(html_535a3854d68fb52b503ed21757ea0e69);
+            
+        
+
+        marker_4d34146b21f975248d7ed33580dd3784.bindPopup(popup_746e1c316e734489392f647301bde951)
+        ;
+
+        
+    
+    
+            var marker_d9af104572a461dc8568cc445f1c2259 = L.marker(
+                [5.938092100000063, 80.57613440000006],
+                {}
+            ).addTo(map_1813258afd329924d53a907290fa6b96);
+        
+    
+            var icon_c8c355e8a890abbd192ccb88c6dfb4ec = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "university", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_d9af104572a461dc8568cc445f1c2259.setIcon(icon_c8c355e8a890abbd192ccb88c6dfb4ec);
+        
+    
+        var popup_d6456186a624d1059d2c65c518105271 = L.popup({"maxWidth": 250});
+
+        
+            
+                var html_9c0645e661861a9fa2e3adbc16cbf543 = $(`<div id="html_9c0645e661861a9fa2e3adbc16cbf543" style="width: 100.0%; height: 100.0%;"><b>University of Ruhuna</b><br>A2, Matara</div>`)[0];
+                popup_d6456186a624d1059d2c65c518105271.setContent(html_9c0645e661861a9fa2e3adbc16cbf543);
+            
+        
+
+        marker_d9af104572a461dc8568cc445f1c2259.bindPopup(popup_d6456186a624d1059d2c65c518105271)
+        ;
+
+        
+    
+    
+            var marker_b09a69c96a9b9519de2f8779bf00ffb2 = L.marker(
+                [7.254942200000073, 80.59739020000006],
+                {}
+            ).addTo(map_1813258afd329924d53a907290fa6b96);
+        
+    
+            var icon_8e9bc81b690fb424ffed4691aae38c0a = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "university", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_b09a69c96a9b9519de2f8779bf00ffb2.setIcon(icon_8e9bc81b690fb424ffed4691aae38c0a);
+        
+    
+        var popup_daf061788ca6509b1caed2f9560b736f = L.popup({"maxWidth": 250});
+
+        
+            
+                var html_b292345f1867f90901f2926cea2b0e5d = $(`<div id="html_b292345f1867f90901f2926cea2b0e5d" style="width: 100.0%; height: 100.0%;"><b>University of Peradeniya</b><br>Galaha Rd, 20400</div>`)[0];
+                popup_daf061788ca6509b1caed2f9560b736f.setContent(html_b292345f1867f90901f2926cea2b0e5d);
+            
+        
+
+        marker_b09a69c96a9b9519de2f8779bf00ffb2.bindPopup(popup_daf061788ca6509b1caed2f9560b736f)
+        ;
+
+        
+    
+    
+            var marker_b1b80a1144d8e256ca12fdbb4cba9590 = L.marker(
+                [6.900014900000031, 79.85879380000006],
+                {}
+            ).addTo(map_1813258afd329924d53a907290fa6b96);
+        
+    
+            var icon_d9add9d16251100727a3da188d736c16 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "university", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_b1b80a1144d8e256ca12fdbb4cba9590.setIcon(icon_d9add9d16251100727a3da188d736c16);
+        
+    
+        var popup_3cc35ec54fc1588d0f9b1e8f00d4ca6a = L.popup({"maxWidth": 250});
+
+        
+            
+                var html_e5e1d68709771ef247625741897f1f8d = $(`<div id="html_e5e1d68709771ef247625741897f1f8d" style="width: 100.0%; height: 100.0%;"><b>University of Colombo</b><br>College House, 94 Kumaratunga Munidasa Mawatha, Colombo 00700</div>`)[0];
+                popup_3cc35ec54fc1588d0f9b1e8f00d4ca6a.setContent(html_e5e1d68709771ef247625741897f1f8d);
+            
+        
+
+        marker_b1b80a1144d8e256ca12fdbb4cba9590.bindPopup(popup_3cc35ec54fc1588d0f9b1e8f00d4ca6a)
+        ;
+
+        
+    
+    
+            var tile_layer_b2ab50da7a48ab565e42b0d843edffea = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca target=\"_blank\" href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca target=\"_blank\" href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+            var mini_map_0b5f56cfadd74d3d4c7c19f9da718e03 = new L.Control.MiniMap(
+                tile_layer_b2ab50da7a48ab565e42b0d843edffea,
+                {"autoToggleDisplay": false, "centerFixed": false, "collapsedHeight": 25, "collapsedWidth": 25, "height": 150, "minimized": false, "position": "bottomright", "toggleDisplay": true, "width": 150, "zoomAnimation": false, "zoomLevelOffset": -5}
+            );
+            map_1813258afd329924d53a907290fa6b96.addControl(mini_map_0b5f56cfadd74d3d4c7c19f9da718e03);
+        
+    
+            var mouse_position_c639ff5f8cc6e3a4e8b725bed6aad376 = new L.Control.MousePosition(
+                {"emptyString": "Unavailable", "lngFirst": false, "numDigits": 5, "position": "bottomright", "prefix": "", "separator": " : "}
+            );
+            mouse_position_c639ff5f8cc6e3a4e8b725bed6aad376.options["latFormatter"] =
+                undefined;
+            mouse_position_c639ff5f8cc6e3a4e8b725bed6aad376.options["lngFormatter"] =
+                undefined;
+            map_1813258afd329924d53a907290fa6b96.addControl(mouse_position_c639ff5f8cc6e3a4e8b725bed6aad376);
+        
+    
+            var measure_control_84421863817c642296be8dea59c55aea = new L.Control.Measure(
+                {"position": "topright", "primaryAreaUnit": "sqmeters", "primaryLengthUnit": "meters", "secondaryAreaUnit": "acres", "secondaryLengthUnit": "miles"});
+            map_1813258afd329924d53a907290fa6b96.addControl(measure_control_84421863817c642296be8dea59c55aea);
+
+        
+</script>
+</html>
